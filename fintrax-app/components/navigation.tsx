@@ -22,6 +22,10 @@ const routes = [
     href: "/accounts",
     label: "Accounts",
   },
+  {
+    href: "/categories",
+    label: "Categories",
+  },
 ];
 
 export const Navigation = () => {
