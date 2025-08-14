@@ -154,7 +154,7 @@ jobs:
 
     env:
       # 🔧 set these to your real names (no need for per-env if you run one service)
-      ECS_CLUSTER: fintrax-dev
+      ECS_CLUSTER: fintrax
       ECS_SERVICE: fintrax-dev-svc
       CONTAINER_NAME: fintrax
 
