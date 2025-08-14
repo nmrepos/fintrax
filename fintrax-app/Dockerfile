@@ -38,5 +38,5 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "dev"]
-# CMD ["node", ".next/standalone/server.js"]
+CMD ["npm", "start"]
+#CMD ["node", ".next/standalone/server.js"]
