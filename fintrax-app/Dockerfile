@@ -1,8 +1,26 @@
-# Simple development Dockerfile
+# Simple Dockerfile with build arguments
 FROM node:18-alpine
 
-# Set working directorys
+# Set working directory
 WORKDIR /app
+
+# Define build arguments
+ARG NEXT_PUBLIC_APP_URL
+ARG NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+ARG NEXT_PUBLIC_CLERK_SIGN_IN_URL
+ARG NEXT_PUBLIC_CLERK_SIGN_UP_URL
+ARG DATABASE_URL
+ARG CLERK_SECRET_KEY
+ARG CLERK_PUBLISHABLE_KEY
+
+# Set environment variables from build args
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+ENV NEXT_PUBLIC_CLERK_SIGN_IN_URL=$NEXT_PUBLIC_CLERK_SIGN_IN_URL
+ENV NEXT_PUBLIC_CLERK_SIGN_UP_URL=$NEXT_PUBLIC_CLERK_SIGN_UP_URL
+ENV DATABASE_URL=$DATABASE_URL
+ENV CLERK_SECRET_KEY=$CLERK_SECRET_KEY
+ENV CLERK_PUBLISHABLE_KEY=$CLERK_PUBLISHABLE_KEY
 
 # Copy package files
 COPY package*.json ./
@@ -13,8 +31,11 @@ RUN npm install
 # Copy all source code
 COPY . .
 
+# Build the application
+RUN npm run build
+
 # Expose port 3000
 EXPOSE 3000
 
-# Run development server
-CMD ["npm", "run", "dev"]
+# Start the application
+CMD ["npm", "start"]
